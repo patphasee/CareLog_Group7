@@ -1,7 +1,7 @@
 import json
 import datetime
 from app.patient import Patient
-from app.medstaff import MedStaff, Course
+from app.medstaff import MedStaff
 
 class Manager:
     """The main controller for all business logic and data handling."""
