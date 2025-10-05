@@ -6,17 +6,16 @@ Version: 1.0
 Test script for Daily Notes module
 """
 
-from daily_notes.controllers.daily_notes_controller import DailyNotesController
+from app.daily_notes.controllers.daily_notes_controller import DailyNotesController
 
 def main():
     controller = DailyNotesController()
 
-    # Example resident and staff IDs
     resident_id = 101
     staff_id = 5
     date = "2025-10-05"
 
-    print("=== Creating Daily Notes ===")
+    # Create notes
     note1 = controller.add_daily_note(resident_id, staff_id, date, "Patient feeling better today.")
     note2 = controller.add_daily_note(resident_id, staff_id, date, "Administered morning medication.")
 
@@ -24,15 +23,15 @@ def main():
     for note in controller.view_resident_notes(resident_id):
         print(f"{note.id}: {note.note_content}")
 
-    print("\n=== Updating a Note ===")
+    # Update a note
     controller.edit_note(note1.id, "Patient showing full recovery signs.")
-    print("Notes after update:")
+    print("\nNotes after update:")
     for note in controller.view_resident_notes(resident_id):
         print(f"{note.id}: {note.note_content}")
 
-    print("\n=== Deleting a Note ===")
+    # Delete a note
     controller.remove_note(note2.id)
-    print("Notes after deletion:")
+    print("\nNotes after deletion:")
     for note in controller.view_resident_notes(resident_id):
         print(f"{note.id}: {note.note_content}")
 
