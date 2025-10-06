@@ -83,6 +83,12 @@ class Manager:
         self.next_patient_id += 1
         self._save_data()
         return name
+    
+    def find_patient_by_id(self, patient_id): 
+        """A new helper to find one student by their exact ID."""
+        for patient in self.patients:
+            if patient['id'] == int(patient_id):
+                return patient['name']
 
     # Assignment persistence helpers
 
