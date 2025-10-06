@@ -67,7 +67,7 @@ class Manager:
         self._save_data()
         return name
 
-    # Assignment persistence helpers 
+    # Assignment persistence helpers
 
     def add_assignment(self, staff_id, resident_id, date, shift):
         assignment = StaffAssignment(
