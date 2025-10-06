@@ -14,8 +14,8 @@ class DailyNotesController:
     def __init__(self):
         self.service = DailyNotesService()
 
-    def add_daily_note(self, resident_id, staff_id, date, content):
-        return self.service.create_note(resident_id, staff_id, date, content)
+    def add_daily_note(self, resident_id, staff_id, date, note_content, prescription, patient_instructions):
+        return self.service.create_note(resident_id, staff_id, date, note_content, prescription, patient_instructions)
 
     def view_resident_notes(self, resident_id):
         return self.service.get_notes_by_resident(resident_id)
