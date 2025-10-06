@@ -1,0 +1,86 @@
+{
+    "admin": [
+        {
+            "id": 1,
+            "name": "Ivan Tecnick"
+        },
+        {
+            "id": 2,
+            "name": "Hannah Resauce"
+        }
+    ],
+    "patients": [
+        {
+            "id": 1,
+            "name": "Alice Wunder",
+            "assigned_staff_ids": [
+                1,
+                3
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Ben Jerry",
+            "assigned_staff_ids": [
+                2
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Cale Makaw",
+            "assigned_staff_ids": [
+                1
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Dennis McDavid",
+            "assigned_staff_ids": [
+                2
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Evan Hughes",
+            "assigned_staff_ids": [
+                3,
+                2
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Finn Harzey",
+            "assigned_staff_ids": [
+                2,
+                1
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Grant Smith",
+            "assigned_staff_ids": [
+                2
+            ]
+        }
+    ],
+    "medstaff": [
+        {
+            "id": 1,
+            "name": "Dr. Evelyn Hart",
+            "speciality": "Cardiology"
+        },
+        {
+            "id": 2,
+            "name": "Dr. Brian Thunker",
+            "speciality": "Neurology"
+        },
+        {
+            "id": 3,
+            "name": "Dr. Bart Kinder",
+            "speciality": "Pediatrics"
+        }
+    ],
+    "next_patient_id": 8,
+    "next_medstaff_id": 4,
+    "next_admin_id": 3
+}

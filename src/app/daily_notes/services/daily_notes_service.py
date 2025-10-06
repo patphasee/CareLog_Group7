@@ -15,8 +15,8 @@ class DailyNotesService:
         self.notes = []
         self.next_id = 1
 
-    def create_note(self, resident_id, staff_id, date, note_content):
-        note = DailyNote(self.next_id, resident_id, staff_id, date, note_content)
+    def create_note(self, resident_id, staff_id, date, note_content, prescription, patient_instructions):
+        note = DailyNote(self.next_id, resident_id, staff_id, date, note_content, prescription, patient_instructions)
         self.notes.append(note)
         self.next_id += 1
         return note
