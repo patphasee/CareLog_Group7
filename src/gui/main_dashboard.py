@@ -2,7 +2,7 @@
 import streamlit as st
 from app.manager import Manager
 from gui.medstaff_pages import show_medstaff_page
-# not implmented yet from gui.patient_pages import show_patient_page
+from gui.patient_pages import show_patient_page
 from gui.admin_pages import show_admin_page
 
 def launch():
