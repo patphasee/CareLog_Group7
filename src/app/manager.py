@@ -1,12 +1,14 @@
 import json
+import os
 from app.patient import Patient
 from app.medstaff import MedStaff
 from app.staff_assignments.models.staff_assignment import StaffAssignment
 
 class Manager:
     """The main controller for all business logic and data handling."""
-    def __init__(self, data_path="src/data/carelog.json"):
+    def __init__(self, data_path=os.path.abspath("src/data/carelog.json")):
         self.data_path = data_path
+        print(data_path)
         self.admin = []
         self.patients = []
         self.medstaff = []
