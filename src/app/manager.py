@@ -12,6 +12,7 @@ class Manager:
         self.admin = []
         self.patients = []
         self.medstaff = []
+        self.assignments = []
         self.appointment = []
         self.record = []
         self.careplan = []
