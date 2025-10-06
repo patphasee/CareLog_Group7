@@ -10,10 +10,14 @@ class Manager:
         self.admin = []
         self.patients = []
         self.medstaff = []
+        self.appointment = []
+        self.record = []
+        self.careplan = []
         self.next_patient_id = 1
         self.next_medstaff_id = 1
         self.next_admin_id = 1
         self._load_data()
+
 
     def _load_data(self):
         """Loads data from the JSON file and populates the object lists."""
@@ -23,6 +27,9 @@ class Manager:
                 self.admin = data.get("admin", [])
                 self.patients = data.get("patients", [])
                 self.medstaff = data.get("medstaff", []) 
+                self.appointment = data.get("appointment", [])
+                self.record = data.get("record", [])
+                self.careplan = data.get("careplan", [])
                 self.next_admin_id = data.get("next_admin_id")
                 self.next_patient_id = data.get("next_patient_id")
                 self.next_medstaff_id = data.get("next_medstaff_id")
@@ -35,6 +42,9 @@ class Manager:
             "admin": [dict(a) for a in self.admin],
             "patients": [dict(p) for p in self.patients],
             "medstaff": [dict(m) for m in self.medstaff],
+            "appointment": [dict(app) for app in self.appointment],
+            "record": [dict(r) for r in self.record],
+            "careplan": [dict(c) for c in self.careplan],
             "next_admin_id": self.next_admin_id,
             "next_patient_id": self.next_patient_id,
             "next_medstaff_id": self.next_medstaff_id
