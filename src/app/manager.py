@@ -3,6 +3,7 @@ import os
 from app.patient import Patient
 from app.medstaff import MedStaff
 from app.staff_assignments.models.staff_assignment import StaffAssignment
+from app.daily_notes.models.daily_note import DailyNote
 
 class Manager:
     """The main controller for all business logic and data handling."""
@@ -20,6 +21,8 @@ class Manager:
         self.next_medstaff_id = 1
         self.next_admin_id = 1
         self.next_assignment_id = 1 
+        self.daily_notes = []       
+        self.next_daily_note_id = 1   
         self._load_data()
 
 
@@ -37,6 +40,13 @@ class Manager:
                 self.next_admin_id = data.get("next_admin_id")
                 self.next_patient_id = data.get("next_patient_id")
                 self.next_medstaff_id = data.get("next_medstaff_id")
+                self.daily_notes = [
+                    DailyNote(
+                        n["id"], n["staff_id"], n["resident_id"], n["note"], n["timestamp"]
+                    ) for n in data.get("daily_notes", [])
+                ]
+                self.next_daily_note_id = data.get("next_daily_note_id", 1)
+
         except FileNotFoundError:
             print("Data file not found. Starting with a clean state.")
 
@@ -53,6 +63,8 @@ class Manager:
             "next_patient_id": self.next_patient_id,
             "next_medstaff_id": self.next_medstaff_id,
             "next_assignment_id": self.next_assignment_id,
+            "daily_notes": [n.__dict__ for n in self.daily_notes],
+            "next_daily_note_id": self.next_daily_note_id
         }
         with open(self.data_path, 'w') as f:
             json.dump(data_to_save, f, indent=4)
