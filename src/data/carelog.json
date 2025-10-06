@@ -163,5 +163,15 @@
     "next_admin_id": 3,
     "next_patient_id": 8,
     "next_medstaff_id": 4,
-    "next_assignment_id": 2
+    "next_assignment_id": 1,
+    "daily_notes": [
+        {
+            "id": 1,
+            "staff_id": 1,
+            "resident_id": 1,
+            "note": "Test note 1213",
+            "timestamp": "2025-10-06T18:28:12"
+        }
+    ],
+    "next_daily_note_id": 2
 }

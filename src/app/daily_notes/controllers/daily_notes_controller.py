@@ -1,27 +1,27 @@
 """
 Author: Pitipat Phasee
-Last Modified: 2025-10-05
+Last Modified: 2025-10-06
 Version: 1.0
 
-Daily notes controller object
+Controller for Daily Notes
 """
 
 from app.daily_notes.services.daily_notes_service import DailyNotesService
 
 class DailyNotesController:
-    """Controller for Daily Notes."""
+    """Controller layer for Daily Notes feature."""
 
-    def __init__(self):
-        self.service = DailyNotesService()
+    def __init__(self, manager):
+        self.service = DailyNotesService(manager)
 
-    def add_daily_note(self, resident_id, staff_id, date, note_content, prescription, patient_instructions):
-        return self.service.create_note(resident_id, staff_id, date, note_content, prescription, patient_instructions)
+    def add_note(self, staff_id, resident_id, note_text):
+        return self.service.create_note(staff_id, resident_id, note_text)
 
-    def view_resident_notes(self, resident_id):
+    def view_notes_by_staff(self, staff_id):
+        return self.service.get_notes_by_staff(staff_id)
+
+    def view_notes_by_resident(self, resident_id):
         return self.service.get_notes_by_resident(resident_id)
 
-    def edit_note(self, note_id, new_content):
-        return self.service.update_note(note_id, new_content)
-
-    def remove_note(self, note_id):
-        return self.service.delete_note(note_id)
+    def view_all_notes(self):
+        return self.service.get_all_notes()
