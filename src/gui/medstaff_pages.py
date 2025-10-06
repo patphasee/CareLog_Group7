@@ -8,7 +8,7 @@ def show_medstaff_page(manager):
     # --- Search Section (remains the same) ---
     st.subheader("Find a Patient")
     with st.form("find_form"):
-        student_id = st.text_input("Patient ID")
+        patient_id = st.text_input("Patient ID")
         submitted = st.form_submit_button("Search")
         
         if submitted:
