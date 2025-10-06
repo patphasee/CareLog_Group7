@@ -16,28 +16,72 @@
             "assigned_staff_ids": [
                 1,
                 3
-            ]
+            ],
+            "dob": "10-3-1998",
+            "gender": "Female",
+            "allergies" : [
+                "Fish"
+            ],
+            "contact" : {
+                "name": "Pippa Wunder",
+                "contact": "pwunder@hotmail.com"
+            },
+            "preferences" : "",
+            "current_patient" : "True"
         },
         {
             "id": 2,
             "name": "Ben Jerry",
             "assigned_staff_ids": [
                 2
-            ]
+            ],
+            "dob": "1-8-1978",
+            "gender": "Male",
+            "allergies" : [
+                "Nuts"
+            ],
+            "contact" : {
+                "name": "",
+                "contact": ""
+            },
+            "preferences" : "",
+            "current_patient" : "True"
         },
         {
             "id": 3,
             "name": "Cale Makaw",
             "assigned_staff_ids": [
                 1
-            ]
+            ],
+            "dob": "17-3-1995",
+            "gender": "Male",
+            "allergies" : [
+                ""
+            ],
+            "contact" : {
+                "name": "",
+                "contact": ""
+            },
+            "preferences" : "",
+            "current_patient" : "False"
         },
         {
             "id": 4,
             "name": "Dennis McDavid",
             "assigned_staff_ids": [
                 2
-            ]
+            ],
+            "dob": "16-6-1988",
+            "gender": "Male",
+            "allergies" : [
+                ""
+            ],
+            "contact" : {
+                "name": "Mike McDavid",
+                "contact": "9999 999 999"
+            },
+            "preferences" : "",
+            "current_patient" : "True"
         },
         {
             "id": 5,
@@ -45,7 +89,18 @@
             "assigned_staff_ids": [
                 3,
                 2
-            ]
+            ],
+            "dob": "24-5-2000",
+            "gender": "Male",
+            "allergies" : [
+                "Dogs"
+            ],
+            "contact" : {
+                "name": "",
+                "contact": ""
+            },
+            "preferences" : "",
+            "current_patient" : "True"
         },
         {
             "id": 6,
@@ -53,14 +108,36 @@
             "assigned_staff_ids": [
                 2,
                 1
-            ]
+            ],
+            "dob": "30-8-2001",
+            "gender": "Male",
+            "allergies" : [
+                ""
+            ],
+            "contact" : {
+                "name": "Leonard Newt",
+                "contact": "email@email.com"
+            },
+            "preferences" : "",
+            "current_patient" : "True"
         },
         {
             "id": 7,
             "name": "Grant Smith",
             "assigned_staff_ids": [
                 2
-            ]
+            ],
+            "dob": "1-8-1978",
+            "gender": "Non-Binary",
+            "allergies" : [
+                ""
+            ],
+            "contact" : {
+                "name": "",
+                "contact": ""
+            },
+            "preferences" : "",
+            "current_patient" : "False"
         }
     ],
     "medstaff": [
