@@ -20,10 +20,8 @@ def launch():
 
     # Use an if/elif block to call the correct function to render the selected page.
     if page == "Patient View":
-        st.header("Patient related options/menus")
-        st.warning("This feature will be implemented.")
+        show_patient_page(st.session_state.manager)
     elif page == "Staff View":
         show_medstaff_page(st.session_state.manager)
     elif page == "Admin View":
-        st.header("Admin related functions")
-        st.warning("This feature will be implemented.")
+        show_admin_page(st.session_state.manager)
