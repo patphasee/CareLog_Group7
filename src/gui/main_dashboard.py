@@ -2,7 +2,7 @@
 import streamlit as st
 from app.manager import Manager
 from gui.medstaff_pages import show_medstaff_page
-from gui.patient_pages import show_patient_page
+# not implmented yet from gui.patient_pages import show_patient_page
 from gui.admin_pages import show_admin_page
 
 def launch():
@@ -25,5 +25,4 @@ def launch():
     elif page == "Staff View":
         show_medstaff_page(st.session_state.manager)
     elif page == "Admin View":
-        st.header("Admin related functions")
-        st.warning("This feature will be implemented.")
+        show_admin_page(st.session_state.manager)

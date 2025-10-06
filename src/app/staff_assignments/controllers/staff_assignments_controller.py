@@ -11,8 +11,8 @@ from app.staff_assignments.services.staff_assignments_service import StaffAssign
 class StaffAssignmentsController:
     """Controller for Staff Assignments."""
 
-    def __init__(self):
-        self.service = StaffAssignmentsService()
+    def __init__(self, manager):
+        self.service = StaffAssignmentsService(manager)
 
     def assign_staff(self, staff_id, resident_id, date, shift):
         return self.service.create_assignment(staff_id, resident_id, date, shift)
