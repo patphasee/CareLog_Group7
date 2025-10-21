@@ -69,27 +69,6 @@ class Manager:
         with open(self.data_path, 'w') as f:
             json.dump(data_to_save, f, indent=4)
 
-    # --- Existing methods ---
-
-    def add_patient(self, name, assigned_staff):
-        patient_id = self.next_patient_id
-        assigned_staff = [assigned_staff]
-        new_patient = {
-            "id": patient_id,
-            "name": name,
-            "assigned_staff_ids": assigned_staff,
-        }
-        self.patients.append(new_patient)
-        self.next_patient_id += 1
-        self._save_data()
-        return name
-    
-    def find_patient_by_id(self, patient_id): 
-        """A new helper to find one student by their exact ID."""
-        for patient in self.patients:
-            if patient['id'] == int(patient_id):
-                return patient['name']
-
     # Assignment persistence helpers
 
     def add_assignment(self, staff_id, resident_id, date, shift):
@@ -119,3 +98,41 @@ class Manager:
                 self._save_data()
                 return True
         return False
+    
+    # Patiient Functions
+
+    def add_new_patient(self, name, dob=None, gender=None, allergies=None, contact=None, password="password"):
+        """Add a new patient as a Patient object."""
+        from app.patient import Patient
+        new_patient = Patient(
+            user_id=self.next_patient_id,
+            name=name,
+            dob=dob,
+            gender=gender,
+            allergies=allergies or [],
+            contact=contact or {"name": "", "contact": ""},
+            assigned_staff_ids=[],
+            preferences="",
+            current_patient=True,
+            password=password
+        )
+        self.patients.append(new_patient.__dict__)
+        self.next_patient_id += 1
+        self._save_data()
+        return new_patient
+
+
+
+    # Staff functions
+
+    def add_new_staff(self, name, speciality):
+        """Add a new medical staff member."""
+        staff = {
+            "id": self.next_medstaff_id,
+            "name": name,
+            "speciality": speciality
+        }
+        self.medstaff.append(staff)
+        self.next_medstaff_id += 1
+        self._save_data()
+        return staff
