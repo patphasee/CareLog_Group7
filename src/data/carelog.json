@@ -35,13 +35,29 @@
             "password": "123"
         }
     ],
-    "medstaff": [],
+    "medstaff": [
+        {
+            "id": 1,
+            "name": "awefhuo",
+            "speciality": "Doctor"
+        },
+        {
+            "id": 2,
+            "name": "fwaEJIOARN",
+            "speciality": "sUREGEON"
+        },
+        {
+            "id": 3,
+            "name": "thiek",
+            "speciality": "Trauma"
+        }
+    ],
     "appointment": [],
     "record": [],
     "careplan": [],
     "next_admin_id": 1,
     "next_patient_id": 3,
-    "next_medstaff_id": 1,
+    "next_medstaff_id": 4,
     "next_assignment_id": 1,
     "daily_notes": [],
     "next_daily_note_id": 1
