@@ -21,7 +21,21 @@ def show_admin_page(manager):
             st.info("Feature not implemented yet.")
         elif page == "Manage Staff":
             st.subheader("Manage Staff")
-            st.info("Feature not implemented yet.")
+            st.markdown("#### Add Staff")
+            st.write("Register a new staff into the system.")
+            with st.form("add_staff_form"):
+                name = st.text_input("Full Name")
+                speciality = st.text_input("Enter Role")
+                submitted_add = st.form_submit_button("Add Staff")
+            if submitted_add:
+                if name.strip():
+                    new_staff = manager.add_new_staff(
+                        name=name.strip(),
+                        speciality=speciality.strip()
+                    )
+                    st.success(f"Added new staff!")
+            else:
+                st.warning("Please enter a staff name.")
         elif page == "Staff Assignments":
             show_staff_assignments_page(manager)
 
