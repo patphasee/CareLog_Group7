@@ -1,39 +1,47 @@
-"""
-Author: Pitipat Phasee
-Last Modified: 2025-10-05
-Version: 1.0
+import pytest 
+import os
+from src.app.staff_assignments.models.staff_assignment import StaffAssignment
+from src.app.staff_assignments.services.staff_assignments_service import StaffAssignmentsService
+from src.app.staff_assignments.controllers.staff_assignments_controller import StaffAssignmentsController
 
-Test for staff_assignents
-"""
 
-from app.staff_assignments.controllers.staff_assignments_controller import StaffAssignmentsController
+def test_staff_assignment_basic():
+    a = StaffAssignment(
+        id=1,
+        staff_id=10,
+        resident_id=20,
+        date="2025-10-20",
+        shift="Morning"
+    )
+    assert a.id == 1
+    assert a.staff_id == 10
+    assert a.resident_id == 20
+    assert a.date == "2025-10-20"
+    assert a.shift == "Morning"
 
-def main():
-    controller = StaffAssignmentsController()
+# create a fake manager to avoid saving data to files during tests
+class FakeManager1:
+    def __init__(self):
+        self.assignments = []
+        self.next_id = 1
 
-    staff_id = 200
-    resident_id = 101
-    date = "2025-10-05"
+    def add_assignment(self, staff_id, resident_id, date, shift):
+        a = StaffAssignment(self.next_id, staff_id, resident_id, date, shift)
+        self.assignments.append(a)
+        self.next_id += 1
+        return a
 
-    # Create assignments
-    a1 = controller.assign_staff(staff_id, resident_id, date, "Morning")
-    a2 = controller.assign_staff(staff_id, 102, date, "Night")
+    def get_all_assignments(self):
+        return self.assignments
 
-    print("Created Assignments:")
-    for a in controller.view_staff_assignments(staff_id):
-        print(f"{a.id}: Resident {a.resident_id}, Shift: {a.shift}")
+def test_service_create_and_retrieve():
+    manager = FakeManager1()
+    service = StaffAssignmentsService(manager)
 
-    # Update an assignment
-    controller.edit_assignment(a1.id, "Afternoon")
-    print("\nAssignments after update:")
-    for a in controller.view_staff_assignments(staff_id):
-        print(f"{a.id}: Resident {a.resident_id}, Shift: {a.shift}")
+    a = service.create_assignment(10, 20, "2025-10-20", "Night")
+    assert a.id == 1
+    assert a.shift == "Night"
 
-    # Delete an assignment
-    controller.remove_assignment(a2.id)
-    print("\nAssignments after deletion:")
-    for a in controller.view_staff_assignments(staff_id):
-        print(f"{a.id}: Resident {a.resident_id}, Shift: {a.shift}")
-
-if __name__ == "__main__":
-    main()
+    results = service.get_assignments_by_staff(10)
+    assert len(results) == 1
+    assert results[0].resident_id == 20

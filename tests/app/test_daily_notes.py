@@ -1,39 +1,51 @@
-"""
-Author: Pitipat Phasee
-Last Modified: 2025-10-05
-Version: 1.0
+import pytest
+import os
+from src.app.daily_notes.models.daily_note import DailyNote
+from src.app.daily_notes.services.daily_notes_service import DailyNotesService
+from src.app.daily_notes.controllers.daily_notes_controller import DailyNotesController
 
-Test script for Daily Notes module
-"""
 
-from app.daily_notes.controllers.daily_notes_controller import DailyNotesController
+#create a fake manager to avoid saving data to files during tests
+class FakeManager:
+    def __init__(self):
+        self.daily_notes = []
+        self.next_daily_note_id = 1
+    def _save_data(self): pass  
 
-def main():
-    controller = DailyNotesController()
 
-    resident_id = 101
-    staff_id = 5
-    date = "2025-10-05"
+def test_daily_note_basic_fields():
+    note = DailyNote(
+        id=1,
+        staff_id=10,
+        resident_id=20,
+        note="Patient is recovering well",
+        timestamp="2025-10-25T09:00:00"
+    )
+    assert note.id == 1
+    assert note.staff_id == 10
+    assert note.resident_id == 20
+    assert note.note == "Patient is recovering well"
+    assert note.timestamp == "2025-10-25T09:00:00"
 
-    # Create notes
-    note1 = controller.add_daily_note(resident_id, staff_id, date, "Patient feeling better today.")
-    note2 = controller.add_daily_note(resident_id, staff_id, date, "Administered morning medication.")
 
-    print("Created Notes:")
-    for note in controller.view_resident_notes(resident_id):
-        print(f"{note.id}: {note.note_content}")
+def test_create_and_get_notes_service():
+    manager = FakeManager()
+    service = DailyNotesService(manager)
 
-    # Update a note
-    controller.edit_note(note1.id, "Patient showing full recovery signs.")
-    print("\nNotes after update:")
-    for note in controller.view_resident_notes(resident_id):
-        print(f"{note.id}: {note.note_content}")
+    note = service.create_note(10, 20, "Patient stable")
+    assert note.id == 1
+    assert note.note == "Patient stable"
+    assert note in manager.daily_notes
 
-    # Delete a note
-    controller.remove_note(note2.id)
-    print("\nNotes after deletion:")
-    for note in controller.view_resident_notes(resident_id):
-        print(f"{note.id}: {note.note_content}")
+    notes = service.get_notes_by_resident(20)
+    assert len(notes) == 1
 
-if __name__ == "__main__":
-    main()
+def test_controller_add_and_view():
+    controller = DailyNotesController(FakeManager())
+
+    note = controller.add_note(10, 20, "Vitals normal")
+    assert note.note == "Vitals normal"
+
+    result = controller.view_notes_by_resident(20)
+    assert len(result) == 1
+    assert result[0].staff_id == 10
