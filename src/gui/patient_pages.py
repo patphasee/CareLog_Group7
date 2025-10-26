@@ -30,7 +30,7 @@ def show_patient_page(manager):
 
         page = st.sidebar.radio(
             "Navigation",
-            ["Patient Info", "Edit Info", "Daily Notes", "Appointments"]
+            ["Patient Info", "Edit Info", "Daily Notes", "Appointments", "Download Data"]
         )
 
         # Patient Info
@@ -116,6 +116,27 @@ def show_patient_page(manager):
                     st.markdown("---")
             else:
                 st.info("No notes available yet.")
+
+        elif page == "Download Data":
+            """Creates a text file of patient data."""
+            patient_to_print = specific_user
+            button = st.button("Prepare data for download")
+            download = None
+            text = (f"========================\n{patient_to_print['name']} Data\n========================\nDOB: {patient_to_print['dob']}\nID: {patient_to_print['id']}\nAssigned staff: {patient_to_print['assigned_staff_ids']}\nGender: {patient_to_print['gender']}\nAllergies: {patient_to_print['allergies']}\nPreferences: {patient_to_print['preferences']}\nContact: {patient_to_print['contact']['name']}, {patient_to_print['contact']['contact']}\n")
+            if button:
+                
+                st.success(f"File created under {patient_to_print["name"]}_data.txt")
+
+                if button:
+                    download = st.download_button(
+                        label=f"Download data for {patient_to_print["name"]}",
+                        data=text,
+                        file_name=f"{patient_to_print["name"]}_data.txt",
+                        mime=None,
+                        icon=":material/download:",
+                    )
+                else:
+                    st.warning("Please prepare data")
 
     # Invalid login
     elif password != "":
