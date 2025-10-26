@@ -136,3 +136,12 @@ class Manager:
         self.next_medstaff_id += 1
         self._save_data()
         return staff
+
+    def get_system_stats(self):
+        """Returns basic statistics about the system."""
+        return {
+            "total_patients": len(self.patients),
+            "total_medstaff": len(self.medstaff),
+            "total_appointments": len(self.appointment),
+            "total_daily_notes": len(self.daily_notes)
+        }
