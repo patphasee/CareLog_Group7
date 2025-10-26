@@ -50,6 +50,7 @@ def show_appointment_page(manager, user_type="staff", user_id=None):
         date_input_val = st.date_input("Date", value=datetime.now().date() + timedelta(days=1))
         time_input_val = st.time_input("Time", value=datetime.now().time())
         purpose_input_val = st.text_input("Purpose / Notes")
+        location = st.text_input("Location")
 
         # -Staff selection
         if hasattr(manager, "medstaff") and manager.medstaff:
@@ -80,7 +81,8 @@ def show_appointment_page(manager, user_type="staff", user_id=None):
                     staff_id=staff_id,
                     date=str(date_input_val),
                     time=str(time_input_val)[:5],
-                    purpose=purpose_input_val.strip()
+                    purpose=purpose_input_val.strip(),
+                    location = location.strip()
                 )
                 # Show success safely
                 date_str = get_attr(new_app, "date", "Unknown")
@@ -112,6 +114,8 @@ def show_appointment_page(manager, user_type="staff", user_id=None):
                 st.write(f"Patient ID: {get_attr(app,'patient_id')}")
                 st.write(f"Staff ID: {get_attr(app,'staff_id')}")
                 st.write(f"Status: {status_str}")
+                st.write(f"Location: {getattr(app, 'location', 'N/A')}")
+
 
                 col1, col2 = st.columns(2)
 

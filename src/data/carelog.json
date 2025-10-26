@@ -66,7 +66,8 @@
             "date": null,
             "time": "2025-10-27",
             "purpose": null,
-            "status": "Scheduled"
+            "status": "Scheduled",
+            "location": ""
         },
         {
             "id": 2,
@@ -75,7 +76,8 @@
             "date": "2025-10-27",
             "time": "19:29",
             "purpose": "rasvas",
-            "status": "Cancelled"
+            "status": "Cancelled",
+            "location": ""
         },
         {
             "id": 3,
@@ -84,7 +86,8 @@
             "date": "2025-10-27",
             "time": "19:30",
             "purpose": "segs",
-            "status": "Scheduled"
+            "status": "Scheduled",
+            "location": ""
         },
         {
             "id": 4,
@@ -93,7 +96,8 @@
             "date": "2025-10-27",
             "time": "19:44",
             "purpose": "gyjgh",
-            "status": "Scheduled"
+            "status": "Scheduled",
+            "location": ""
         },
         {
             "id": 5,
@@ -102,7 +106,18 @@
             "date": "2025-10-27",
             "time": "19:45",
             "purpose": "weaeffwef",
-            "status": "Scheduled"
+            "status": "Scheduled",
+            "location": ""
+        },
+        {
+            "id": 6,
+            "patient_id": 1,
+            "staff_id": 3,
+            "date": "2025-10-27",
+            "time": "21:42",
+            "purpose": "test one",
+            "status": "Rooom A",
+            "location": ""
         }
     ],
     "record": [],
@@ -110,8 +125,8 @@
     "next_admin_id": 1,
     "next_patient_id": 3,
     "next_medstaff_id": 4,
-    "next_assignment_id": 2,
-    "next_appointment_id": 6,
+    "next_assignment_id": 1,
+    "next_appointment_id": 7,
     "daily_notes": [
         {
             "id": 1,

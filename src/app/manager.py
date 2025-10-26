@@ -208,7 +208,7 @@ class Manager:
 
     # Appointment 
 
-    def add_appointment(self, patient_id, staff_id, date, time, purpose):
+    def add_appointment(self, patient_id, staff_id, date, time, purpose, location =""):
         """Adds a new appointment and saves to JSON."""
         new_app = Appointment(
             self.next_appointment_id,
@@ -216,7 +216,8 @@ class Manager:
             staff_id,
             date,
             time,
-            purpose
+            purpose,
+            location
         )
         self.appointment.append(new_app)
         self.next_appointment_id += 1
