@@ -1,7 +1,8 @@
 import pytest
 import os
 import datetime
-from src.app.patient import Patient
+from app.patient import Patient
+
 
 def test_patient_defaults():
     p = Patient("P001", "Alia")
