@@ -13,7 +13,7 @@ def show_admin_page(manager):
 
         page = st.sidebar.radio(
             "Navigation",
-            ["Patient Logs", "Manage Staff", "Staff Assignments", "System Statistics"]
+            ["Patient Logs", "Manage Staff", "Staff Assignments", "System Statistics", "Download Data"]
         )
 
         if page == "Patient Logs":
@@ -46,6 +46,25 @@ def show_admin_page(manager):
             st.metric("Total Staff", stats["total_medstaff"])
             st.metric("Total Appointments", stats["total_appointments"])
             st.metric("Total Daily Notes", stats["total_daily_notes"])
+
+        elif page == "Download Data":
+            """Creates a text file of admin data."""
+            button = st.button("Prepare data for download")
+            download = None
+            text = (f"========================\nAdmin Data\n========================\nTotal Patients: {manager.get_system_stats()["total_patients"]}\nTotal Staff: {manager.get_system_stats()["total_medstaff"]}\nTotal Appointments: {manager.get_system_stats()["total_appointments"]}\nTotal Daily Notes {manager.get_system_stats()["total_daily_notes"]}")
+            if button:
+                st.success("File created under admin_data.txt")
+
+                if button:
+                    download = st.download_button(
+                        label="Download data",
+                        data=text,
+                        file_name="admin_data.txt",
+                        mime=None,
+                        icon=":material/download:",
+                    )
+                else:
+                    st.warning("Please prepare data")
 
     elif password != "":
         st.sidebar.warning("Wrong password. Please try again.")
