@@ -58,7 +58,30 @@
             "speciality": "Trauma"
         }
     ],
-    "appointment": [],
+    "appointment": [
+        {
+            "appointment_id": 1,
+            "patient": 1,
+            "staff": 1,
+            "date": [
+                "26/10/2025"
+            ],
+            "time": "05:36 PM",
+            "notes": [],
+            "location": ""
+        },
+        {
+            "appointment_id": 2,
+            "patient": 1,
+            "staff": 1,
+            "date": [
+                "26/10/2025"
+            ],
+            "time": "01:00 AM",
+            "notes": [],
+            "location": ""
+        }
+    ],
     "record": [],
     "careplan": [],
     "next_admin_id": 1,
