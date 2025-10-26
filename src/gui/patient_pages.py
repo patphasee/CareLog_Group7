@@ -1,4 +1,5 @@
 import streamlit as st
+from datetime import datetime
 from app.manager import Manager
 
 def show_patient_page(manager):
@@ -28,10 +29,10 @@ def show_patient_page(manager):
 
         page = st.sidebar.radio(
             "Navigation",
-            ["Patient Info", "Edit Info", "Add Notes"]
+            ["Patient Info", "Edit Info", "Daily Notes"]
         )
 
-        # Patient Info 
+        # Patient Info
         if page == "Patient Info":
             st.subheader("Patient Info")
             st.info(
@@ -72,10 +73,43 @@ def show_patient_page(manager):
                     manager._save_data()
                     st.success(" Your information has been updated successfully!")
 
-        #  Add Notes
-        elif page == "Add Notes":
-            st.subheader("Add Notes")
-            st.info("Feature not implemented yet.")
+        # Daily Notes 
+        elif page == "Daily Notes":
+            st.subheader("Your Daily Notes")
+
+            # Add a new note 
+            with st.form("add_patient_note_form"):
+                note_text = st.text_area("Write your note below:")
+                submitted = st.form_submit_button("Add Note")
+
+                if submitted and note_text.strip():
+                    manager.add_daily_note(
+                        staff_id=None,  # None = patient-submitted note
+                        resident_id=specific_user["id"],
+                        note=note_text.strip(),
+                        timestamp=datetime.now().strftime("%Y-%m-%d %H:%M")
+                    )
+                    st.success("Note added successfully!")
+
+            # View all notes for this patient
+            st.markdown("---")
+            st.subheader("All Notes")
+
+            patient_notes = [
+                n for n in manager.daily_notes
+                if n.resident_id == specific_user["id"]
+            ]
+
+            if patient_notes:
+                for note in sorted(patient_notes, key=lambda n: n.timestamp, reverse=True):
+                    author = f"Staff #{note.staff_id}" if note.staff_id else "You (Patient)"
+                    st.markdown(
+                        f"**{author}** — {note.timestamp}  \n"
+                        f"{note.note}"
+                    )
+                    st.markdown("---")
+            else:
+                st.info("No notes available yet.")
 
     # Invalid login
     elif password != "":
