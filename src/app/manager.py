@@ -159,13 +159,20 @@ class Manager:
 
     # Appointments
 
-    def add_appointment(self, patient, staff, time, notes, location):
+    def add_appointment(self, patient, staff, time, date, notes, location):
         appointment = Appointment(
-            self.next_appointment_id, patient, staff, time, notes, location
+            appointment_id=self.next_appointment_id, 
+            patient=patient, 
+            staff=staff, 
+            time=time, 
+            date=date,
+            notes=notes, 
+            location = location
         )
-        self.appointment.append(appointment)
+        self.appointment.append(appointment.__dict__)
         self.next_appointment_id += 1
         self._save_data()
+        return appointment
         
 
     def get_system_stats(self):
