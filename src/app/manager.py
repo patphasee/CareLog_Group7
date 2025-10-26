@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 from app.patient import Patient
 from app.medstaff import MedStaff
 from app.staff_assignments.models.staff_assignment import StaffAssignment
@@ -107,7 +108,6 @@ class Manager:
 
     def add_new_patient(self, name, dob=None, gender=None, allergies=None, contact=None, password="password"):
         """Add a new patient as a Patient object."""
-        from app.patient import Patient
         new_patient = Patient(
             user_id=self.next_patient_id,
             name=name,
@@ -168,3 +168,25 @@ class Manager:
             "total_appointments": len(self.appointment),
             "total_daily_notes": len(self.daily_notes)
         }
+
+    # Daily Notes
+    def add_daily_note(self, staff_id, resident_id, note, timestamp=None):
+            """Adds a new daily note for a resident (by staff or patient)."""
+            if not timestamp:
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+            new_note = DailyNote(
+                id=self.next_daily_note_id,
+                staff_id=staff_id,
+                resident_id=resident_id,
+                note=note,
+                timestamp=timestamp
+            )
+
+            # Store the note object in memory
+            self.daily_notes.append(new_note)
+            self.next_daily_note_id += 1
+
+            # Save to JSON
+            self._save_data()
+            return new_note

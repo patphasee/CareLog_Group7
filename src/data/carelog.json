@@ -30,7 +30,7 @@
             "assigned_staff_ids": [],
             "gender": "Male",
             "allergies": [
-                "afrefa"
+                "test updater"
             ],
             "contact": {
                 "name": "afrea",
@@ -38,7 +38,7 @@
             },
             "preferences": "",
             "current_patient": true,
-            "password": "123"
+            "password": "riny"
         }
     ],
     "medstaff": [
@@ -88,7 +88,29 @@
     "next_patient_id": 3,
     "next_medstaff_id": 4,
     "next_assignment_id": 1,
-    "next_appointment_id": 3,
-    "daily_notes": [],
-    "next_daily_note_id": 1
+    "next_appointment_id": 1,
+    "daily_notes": [
+        {
+            "id": 1,
+            "staff_id": null,
+            "resident_id": 2,
+            "note": "this is a notre",
+            "timestamp": "2025-10-26 16:22"
+        },
+        {
+            "id": 2,
+            "staff_id": 1,
+            "resident_id": 1,
+            "note": "test",
+            "timestamp": "2025-10-26T16:24:09"
+        },
+        {
+            "id": 3,
+            "staff_id": 1,
+            "resident_id": 2,
+            "note": "testrdsg",
+            "timestamp": "2025-10-26T16:24:14"
+        }
+    ],
+    "next_daily_note_id": 4
 }
