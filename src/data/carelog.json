@@ -21,53 +21,54 @@
                 "contact": "676967"
             },
             "preferences": "",
-            "current_patient": true
+            "current_patient": true,
+            "password": "123"
         },
         {
             "id": 2,
-            "name": "vytawekgcfh",
-            "dob": "afafaf",
+            "name": "Tim",
+            "dob": "2008-04-03",
             "assigned_staff_ids": [],
             "gender": "Male",
             "allergies": [
                 "test updater"
             ],
             "contact": {
-                "name": "afrea",
+                "name": "Althea",
                 "contact": "67"
             },
             "preferences": "",
             "current_patient": true,
-            "password": "riny"
+            "password": "password"
         }
     ],
     "medstaff": [
         {
             "id": 1,
-            "name": "awefhuo",
-            "speciality": "Doctor"
+            "name": "Dr Rosemond",
+            "speciality": "Neurology"
         },
         {
             "id": 2,
-            "name": "fwaEJIOARN",
-            "speciality": "sUREGEON"
+            "name": "Dr Weghorn",
+            "speciality": "Surgery"
         },
         {
             "id": 3,
-            "name": "thiek",
+            "name": "Dr Thulk",
             "speciality": "Trauma"
         }
     ],
     "appointment": [
         {
             "id": 1,
-            "patient_id": null,
-            "staff_id": null,
-            "date": null,
-            "time": "2025-10-27",
-            "purpose": null,
+            "patient_id": 2,
+            "staff_id": 2,
+            "date": "2025-10-27",
+            "time": "17:34",
+            "purpose": "checkup",
             "status": "Scheduled",
-            "location": ""
+            "location": "Hospital Wing A"
         },
         {
             "id": 2,
@@ -75,9 +76,9 @@
             "staff_id": 1,
             "date": "2025-10-27",
             "time": "19:29",
-            "purpose": "rasvas",
+            "purpose": "Follow-up",
             "status": "Cancelled",
-            "location": ""
+            "location": "Wing C"
         },
         {
             "id": 3,
@@ -85,9 +86,9 @@
             "staff_id": 1,
             "date": "2025-10-27",
             "time": "19:30",
-            "purpose": "segs",
+            "purpose": "Prosthetic fitting",
             "status": "Scheduled",
-            "location": ""
+            "location": "Hall D"
         },
         {
             "id": 4,
@@ -95,9 +96,9 @@
             "staff_id": 1,
             "date": "2025-10-27",
             "time": "19:44",
-            "purpose": "gyjgh",
+            "purpose": "Scan",
             "status": "Scheduled",
-            "location": ""
+            "location": "Room 213"
         },
         {
             "id": 5,
@@ -105,9 +106,9 @@
             "staff_id": 1,
             "date": "2025-10-27",
             "time": "19:45",
-            "purpose": "weaeffwef",
+            "purpose": "Paperwork",
             "status": "Scheduled",
-            "location": ""
+            "location": "Reception"
         },
         {
             "id": 6,
@@ -117,7 +118,7 @@
             "time": "21:42",
             "purpose": "test one",
             "status": "Rooom A",
-            "location": ""
+            "location": "Wing D"
         }
     ],
     "record": [],
@@ -132,7 +133,7 @@
             "id": 1,
             "staff_id": null,
             "resident_id": 2,
-            "note": "this is a notre",
+            "note": "this is a note",
             "timestamp": "2025-10-26 16:22"
         },
         {

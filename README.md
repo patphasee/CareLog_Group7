@@ -22,13 +22,19 @@ And other subpages for program functions.
 ### Main:
 The overall main function. Runs launch.
 
+### Tests:
+Contains tests for various program functions. Run with command `pytest`
+
 ## How to run
 1. In your terminal, execute the command: streamlit run main.py
 2. This opens a browser page where the app can be navigated.
-3. In the sidebar the view mode can be chosen from admin, patient or medstaff, to login the password is 'password'.
+3. In the sidebar the view mode can be chosen from admin, patient or medstaff, to login the password is 'password' for admin, and the patient passwords can be viewed inside `carelog.json`.
 4. Close the tab and ctrl + c in the terminal to stop running.
 
 ## Design choices/assumptions
 - Upon execution, any existing databases are immediately searched for within the path.
     - (If none are found, a new one is created)
+- All patients have their own passwords needed to access their page.
+- Only one general admin user has been created.
+- Certain data change functions are only accessible to certain users.
 
