@@ -56,3 +56,34 @@ def show_medstaff_page(manager):
     # Daily noptes
     st.subheader("Daily Notes")
     show_daily_notes_page(manager)
+
+# Add appointment
+    st.subheader("Add New Appointment")
+    with st.form("add_appointment_form"):
+        staff_options = {s["name"]: s["id"] for s in manager.medstaff}
+        patient_options = {p["name"]: p["id"] for p in manager.patients}
+
+        name = st.selectbox("Patient Name", list(patient_options.keys()))
+        staff = st.selectbox("Staff Name", list(staff_options.keys()))
+        date = st.date_input("Appointment Date", "today", "today").strftime("%d/%m/%Y")
+        time = st.time_input("Appointment Time").strftime("%I:%M %p")
+        notes = st.text_area("Notes (semicolon-separated)")
+        location = st.text_input("Location")
+
+        submitted_add = st.form_submit_button("Add Appointment")
+
+        if submitted_add:
+            if name.strip():
+                new_appointment = manager.add_appointment(
+                    patient_options[name],
+                    staff_options[staff],
+                    time=time,
+                    date=date,
+                    notes=[n.strip() for n in notes.split(";") if n.strip()],
+                    location=location
+                )
+                st.success(f"Added new appointment: {new_appointment.time} (ID {new_appointment.appointment_id})")
+            else:
+                st.warning("Please enter details.")
+
+    st.divider()
