@@ -87,3 +87,22 @@ def show_medstaff_page(manager):
                 st.warning("Please enter details.")
 
     st.divider()
+
+        # View Appointments
+    staff_options = {s["name"]: s["id"] for s in manager.medstaff}
+    resident_options = {p["name"]: p["id"] for p in manager.patients}
+  
+    st.subheader("View Appointments")
+    view_mode = st.radio("Filter by", ["All Notes", "By Staff", "By Patient"])
+    if view_mode == "All Notes":
+        appointment = [n for n in manager.appointment]
+    elif view_mode == "By Staff":
+        name = st.selectbox("Select Staff", list(staff_options.keys()))
+        appointment = [n for n in manager.appointment if n["staff"] == staff_options[name]]
+    else:
+        name = st.selectbox("Select Resident", list(resident_options.keys()))
+        appointment = [n for n in manager.appointment if n["patient"] == resident_options[name]]
+    if appointment:
+        st.dataframe(appointment)
+    else:
+        st.info("No notes available for this selection.")
