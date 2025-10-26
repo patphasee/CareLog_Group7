@@ -1,8 +1,8 @@
 import pytest 
 import os
-from src.app.staff_assignments.models.staff_assignment import StaffAssignment
-from src.app.staff_assignments.services.staff_assignments_service import StaffAssignmentsService
-from src.app.staff_assignments.controllers.staff_assignments_controller import StaffAssignmentsController
+from app.staff_assignments.models.staff_assignment import StaffAssignment
+from app.staff_assignments.services.staff_assignments_service import StaffAssignmentsService
+from app.staff_assignments.controllers.staff_assignments_controller import StaffAssignmentsController
 
 
 def test_staff_assignment_basic():

@@ -1,9 +1,8 @@
 import pytest
 import os
-from src.app.daily_notes.models.daily_note import DailyNote
-from src.app.daily_notes.services.daily_notes_service import DailyNotesService
-from src.app.daily_notes.controllers.daily_notes_controller import DailyNotesController
-
+from app.daily_notes.models.daily_note import DailyNote
+from app.daily_notes.services.daily_notes_service import DailyNotesService
+from app.daily_notes.controllers.daily_notes_controller import DailyNotesController
 
 #create a fake manager to avoid saving data to files during tests
 class FakeManager:
