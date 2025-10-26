@@ -1,11 +1,12 @@
 import streamlit as st
 from gui.daily_notes_page import show_daily_notes_page
+from gui.appointment_page import show_appointment_page
 
 def show_medstaff_page(manager):
     """Renders all components for the medstaff (staff) page."""
     st.header("Hospital Staff")
 
-    # -Find patient
+    # Find patient
     st.subheader("Find a Patient")
     with st.form("find_form"):
         patient_id = st.text_input("Patient ID")
@@ -16,7 +17,7 @@ def show_medstaff_page(manager):
                 patient_id = int(patient_id)
                 found = manager.find_patient_by_id(patient_id)
                 if found:
-                    st.success(f"✅ Patient {patient_id}: {found}")
+                    st.success(f"Patient {patient_id}: {found}")
                 else:
                     st.error("Could not find patient. Double check entered ID.")
             except ValueError:
@@ -53,6 +54,13 @@ def show_medstaff_page(manager):
 
     st.divider()
 
-    # Daily noptes
-    st.subheader("Daily Notes")
+    # Daily Notes
     show_daily_notes_page(manager)
+
+    st.divider()
+
+    # Appointments 
+ 
+    st.subheader("Appointments")
+    st.write("View, schedule, or manage patient appointments.")
+    show_appointment_page(manager, user_type="staff", user_id=None)

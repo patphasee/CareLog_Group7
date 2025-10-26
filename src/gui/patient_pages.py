@@ -1,6 +1,7 @@
 import streamlit as st
 from datetime import datetime
 from app.manager import Manager
+from gui.appointment_page import show_appointment_page
 
 def show_patient_page(manager):
     st.header("Patient Page")
@@ -29,7 +30,7 @@ def show_patient_page(manager):
 
         page = st.sidebar.radio(
             "Navigation",
-            ["Patient Info", "Edit Info", "Daily Notes"]
+            ["Patient Info", "Edit Info", "Daily Notes", "Appointments"]
         )
 
         # Patient Info
@@ -72,6 +73,11 @@ def show_patient_page(manager):
 
                     manager._save_data()
                     st.success(" Your information has been updated successfully!")
+
+# Appointments 
+
+        elif page == "Appointments":
+            show_appointment_page(manager, user_type="patient", user_id=specific_user["id"])
 
         # Daily Notes 
         elif page == "Daily Notes":
