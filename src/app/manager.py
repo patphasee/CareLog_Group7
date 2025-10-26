@@ -7,6 +7,8 @@ from app.staff_assignments.models.staff_assignment import StaffAssignment
 from app.daily_notes.models.daily_note import DailyNote
 from app.appointment import Appointment
 
+
+
 class Manager:
     """The main controller for all business logic and data handling."""
     def __init__(self, data_path=os.path.abspath("src/data/carelog.json")):
@@ -25,7 +27,7 @@ class Manager:
         self.next_appointment_id = 1
         self.next_assignment_id = 1 
         self.daily_notes = []       
-        self.next_daily_note_id = 1   
+        self.next_daily_note_id = 1  
         self._load_data()
 
 
@@ -37,7 +39,19 @@ class Manager:
                 self.admin = data.get("admin", [])
                 self.patients = data.get("patients", [])
                 self.medstaff = data.get("medstaff", []) 
-                self.appointment = data.get("appointment", [])
+                self.appointment = [
+                    Appointment(
+                        a.get("id"),
+                        a.get("patient_id"),
+                        a.get("staff_id"),
+                        a.get("date"),
+                        a.get("time"),
+                        a.get("purpose"),
+                        a.get("status", "Scheduled")
+                    )
+                    for a in data.get("appointment", [])
+                ]
+
                 self.record = data.get("record", [])
                 self.careplan = data.get("careplan", [])
                 self.next_admin_id = data.get("next_admin_id")
@@ -50,6 +64,7 @@ class Manager:
                     ) for n in data.get("daily_notes", [])
                 ]
                 self.next_daily_note_id = data.get("next_daily_note_id", 1)
+                self.next_appointment_id = data.get("next_appointment_id", 1)
 
         except FileNotFoundError:
             print("Data file not found. Starting with a clean state.")
@@ -60,7 +75,7 @@ class Manager:
             "admin": [dict(a) for a in self.admin],
             "patients": [dict(p) for p in self.patients],
             "medstaff": [dict(m) for m in self.medstaff],
-            "appointment": [dict(app) for app in self.appointment],
+            "appointment": [app.__dict__ for app in self.appointment],
             "record": [dict(r) for r in self.record],
             "careplan": [dict(c) for c in self.careplan],
             "next_admin_id": self.next_admin_id,
@@ -190,3 +205,37 @@ class Manager:
             # Save to JSON
             self._save_data()
             return new_note
+
+    # Appointment 
+
+    def add_appointment(self, patient_id, staff_id, date, time, purpose):
+        """Adds a new appointment and saves to JSON."""
+        new_app = Appointment(
+            self.next_appointment_id,
+            patient_id,
+            staff_id,
+            date,
+            time,
+            purpose
+        )
+        self.appointment.append(new_app)
+        self.next_appointment_id += 1
+        self._save_data()
+        return new_app
+
+    def cancel_appointment(self, appointment_id):
+        """Cancels an appointment by ID."""
+        for app in self.appointment:
+            if app.id == appointment_id:
+                app.status = "Cancelled"
+                self._save_data()
+                return True
+        return False
+
+    def get_appointments_for_patient(self, patient_id):
+        """Returns all appointments for a specific patient."""
+        return [a for a in self.appointment if a.patient_id == patient_id]
+
+    def get_upcoming_appointments(self, patient_id):
+        """Returns scheduled (not cancelled) appointments for the patient."""
+        return [a for a in self.appointment if a.patient_id == patient_id and a.status == "Scheduled"]

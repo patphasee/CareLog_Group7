@@ -1,12 +1,9 @@
-
-
 class Appointment:
-    """A base class for all appointments in the system."""
-    def __init__(self, appointment_id, patient, staff, time, date, notes, location):
-        self.appointment_id = appointment_id
-        self.patient = patient
-        self.staff = staff
-        self.date = date,
-        self.time = time
-        self.notes = notes
-        self.location = location
+    def __init__(self, id, patient_id, staff_id, date, time, purpose, status="Scheduled"):
+        self.id = id
+        self.patient_id = patient_id
+        self.staff_id = staff_id
+        self.date = date       
+        self.time = time        
+        self.purpose = purpose
+        self.status = status

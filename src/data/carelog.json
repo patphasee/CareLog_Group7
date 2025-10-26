@@ -60,39 +60,49 @@
     ],
     "appointment": [
         {
-            "appointment_id": 1,
-            "patient": 1,
-            "staff": 1,
-            "date": [
-                "26/10/2025"
-            ],
-            "time": "05:36 PM",
-            "notes": [],
-            "location": ""
+            "id": 1,
+            "patient_id": null,
+            "staff_id": null,
+            "date": null,
+            "time": "2025-10-27",
+            "purpose": null,
+            "status": "Scheduled"
         },
         {
-            "appointment_id": 2,
-            "patient": 1,
-            "staff": 1,
-            "date": [
-                "26/10/2025"
-            ],
-            "time": "01:00 AM",
-            "notes": [],
-            "location": ""
+            "id": 2,
+            "patient_id": 1,
+            "staff_id": 1,
+            "date": "2025-10-27",
+            "time": "19:29",
+            "purpose": "rasvas",
+            "status": "Cancelled"
         },
         {
-            "appointment_id": 1,
-            "patient": 2,
-            "staff": 1,
-            "date": [
-                "26/10/2025"
-            ],
-            "time": "06:42 PM",
-            "notes": [
-                "tt"
-            ],
-            "location": "Hosptial"
+            "id": 3,
+            "patient_id": 2,
+            "staff_id": 1,
+            "date": "2025-10-27",
+            "time": "19:30",
+            "purpose": "segs",
+            "status": "Scheduled"
+        },
+        {
+            "id": 4,
+            "patient_id": 1,
+            "staff_id": 1,
+            "date": "2025-10-27",
+            "time": "19:44",
+            "purpose": "gyjgh",
+            "status": "Scheduled"
+        },
+        {
+            "id": 5,
+            "patient_id": 2,
+            "staff_id": 1,
+            "date": "2025-10-27",
+            "time": "19:45",
+            "purpose": "weaeffwef",
+            "status": "Scheduled"
         }
     ],
     "record": [],
@@ -101,7 +111,7 @@
     "next_patient_id": 3,
     "next_medstaff_id": 4,
     "next_assignment_id": 1,
-    "next_appointment_id": 2,
+    "next_appointment_id": 6,
     "daily_notes": [
         {
             "id": 1,

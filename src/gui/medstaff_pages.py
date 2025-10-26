@@ -1,11 +1,12 @@
 import streamlit as st
 from gui.daily_notes_page import show_daily_notes_page
+from gui.appointment_page import show_appointment_page
 
 def show_medstaff_page(manager):
     """Renders all components for the medstaff (staff) page."""
     st.header("Hospital Staff")
 
-    # -Find patient
+    # Find patient
     st.subheader("Find a Patient")
     with st.form("find_form"):
         patient_id = st.text_input("Patient ID")
@@ -16,7 +17,7 @@ def show_medstaff_page(manager):
                 patient_id = int(patient_id)
                 found = manager.find_patient_by_id(patient_id)
                 if found:
-                    st.success(f"✅ Patient {patient_id}: {found}")
+                    st.success(f"Patient {patient_id}: {found}")
                 else:
                     st.error("Could not find patient. Double check entered ID.")
             except ValueError:
@@ -53,56 +54,13 @@ def show_medstaff_page(manager):
 
     st.divider()
 
-    # Daily noptes
-    st.subheader("Daily Notes")
+    # Daily Notes
     show_daily_notes_page(manager)
-
-# Add appointment
-    st.subheader("Add New Appointment")
-    with st.form("add_appointment_form"):
-        staff_options = {s["name"]: s["id"] for s in manager.medstaff}
-        patient_options = {p["name"]: p["id"] for p in manager.patients}
-
-        name = st.selectbox("Patient Name", list(patient_options.keys()))
-        staff = st.selectbox("Staff Name", list(staff_options.keys()))
-        date = st.date_input("Appointment Date", "today", "today").strftime("%d/%m/%Y")
-        time = st.time_input("Appointment Time").strftime("%I:%M %p")
-        notes = st.text_area("Notes (semicolon-separated)")
-        location = st.text_input("Location")
-
-        submitted_add = st.form_submit_button("Add Appointment")
-
-        if submitted_add:
-            if name.strip():
-                new_appointment = manager.add_appointment(
-                    patient_options[name],
-                    staff_options[staff],
-                    time=time,
-                    date=date,
-                    notes=[n.strip() for n in notes.split(";") if n.strip()],
-                    location=location
-                )
-                st.success(f"Added new appointment: {new_appointment.time} (ID {new_appointment.appointment_id})")
-            else:
-                st.warning("Please enter details.")
 
     st.divider()
 
-        # View Appointments
-    staff_options = {s["name"]: s["id"] for s in manager.medstaff}
-    resident_options = {p["name"]: p["id"] for p in manager.patients}
-  
-    st.subheader("View Appointments")
-    view_mode = st.radio("Filter by", ["All Notes", "By Staff", "By Patient"])
-    if view_mode == "All Notes":
-        appointment = [n for n in manager.appointment]
-    elif view_mode == "By Staff":
-        name = st.selectbox("Select Staff", list(staff_options.keys()))
-        appointment = [n for n in manager.appointment if n["staff"] == staff_options[name]]
-    else:
-        name = st.selectbox("Select Resident", list(resident_options.keys()))
-        appointment = [n for n in manager.appointment if n["patient"] == resident_options[name]]
-    if appointment:
-        st.dataframe(appointment)
-    else:
-        st.info("No notes available for this selection.")
+    # Appointments 
+ 
+    st.subheader("Appointments")
+    st.write("View, schedule, or manage patient appointments.")
+    show_appointment_page(manager, user_type="staff", user_id=None)
