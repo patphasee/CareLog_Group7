@@ -30,7 +30,7 @@
             "assigned_staff_ids": [],
             "gender": "Male",
             "allergies": [
-                "afrefa"
+                "test updater"
             ],
             "contact": {
                 "name": "afrea",
@@ -38,7 +38,7 @@
             },
             "preferences": "",
             "current_patient": true,
-            "password": "123"
+            "password": "riny"
         }
     ],
     "medstaff": [
