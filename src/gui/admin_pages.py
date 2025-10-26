@@ -13,13 +13,11 @@ def show_admin_page(manager):
 
         page = st.sidebar.radio(
             "Navigation",
-            ["Patient Logs", "Manage Staff", "Staff Assignments", "System Statistics", "Download Data"]
+            ["Manage Staff", "Staff Assignments", "System Statistics", "Download Data"]
         )
 
-        if page == "Patient Logs":
-            st.subheader("Patient Logs")
-            st.info("Feature not implemented yet.")
-        elif page == "Manage Staff":
+        
+        if page == "Manage Staff":
             st.subheader("Manage Staff")
             st.markdown("#### Add Staff")
             st.write("Register a new staff into the system.")
