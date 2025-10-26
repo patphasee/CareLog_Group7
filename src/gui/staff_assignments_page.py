@@ -42,8 +42,8 @@ def show_staff_assignments_page(manager):
     # View Assignments
     st.divider()
     st.subheader("View Existing Assignments")
-    if st.button("🔄 Refresh Assignments"):
-        all_assignments = controller.service.assignments
+    if st.button("Refresh Assignments"):
+        all_assignments = manager.get_all_assignments()
         if all_assignments:
             st.dataframe(
                 [

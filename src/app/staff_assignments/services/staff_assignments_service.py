@@ -12,7 +12,7 @@ class StaffAssignmentsService:
     """Service for managing staff assignments (persistent version)."""
 
     def __init__(self, manager):
-        self.manager = manager  # now relies on Manager’s storage
+        self.manager = manager
 
     def create_assignment(self, staff_id, resident_id, date, shift):
         return self.manager.add_assignment(staff_id, resident_id, date, shift)
