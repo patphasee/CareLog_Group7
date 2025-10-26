@@ -4,6 +4,7 @@ from app.patient import Patient
 from app.medstaff import MedStaff
 from app.staff_assignments.models.staff_assignment import StaffAssignment
 from app.daily_notes.models.daily_note import DailyNote
+from app.appointment import Appointment
 
 class Manager:
     """The main controller for all business logic and data handling."""
@@ -20,6 +21,7 @@ class Manager:
         self.next_patient_id = 1
         self.next_medstaff_id = 1
         self.next_admin_id = 1
+        self.next_appointment_id = 1
         self.next_assignment_id = 1 
         self.daily_notes = []       
         self.next_daily_note_id = 1   
@@ -39,6 +41,7 @@ class Manager:
                 self.careplan = data.get("careplan", [])
                 self.next_admin_id = data.get("next_admin_id")
                 self.next_patient_id = data.get("next_patient_id")
+                self.next_appointment_id = data.get("next_appointment_id")
                 self.next_medstaff_id = data.get("next_medstaff_id")
                 self.daily_notes = [
                     DailyNote(
@@ -63,6 +66,7 @@ class Manager:
             "next_patient_id": self.next_patient_id,
             "next_medstaff_id": self.next_medstaff_id,
             "next_assignment_id": self.next_assignment_id,
+            "next_appointment_id": self.next_appointment_id,
             "daily_notes": [n.__dict__ for n in self.daily_notes],
             "next_daily_note_id": self.next_daily_note_id
         }
@@ -136,6 +140,18 @@ class Manager:
         self.next_medstaff_id += 1
         self._save_data()
         return staff
+    
+
+    # Appointments
+
+    def add_appointment(self, patient, staff, time, notes, location):
+        appointment = Appointment(
+            self.next_appointment_id, patient, staff, time, notes, location
+        )
+        self.appointment.append(appointment)
+        self.next_appointment_id += 1
+        self._save_data()
+        
 
     def get_system_stats(self):
         """Returns basic statistics about the system."""

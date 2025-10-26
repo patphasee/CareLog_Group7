@@ -65,6 +65,7 @@
     "next_patient_id": 3,
     "next_medstaff_id": 4,
     "next_assignment_id": 1,
+    "next_appointment_id": 1,
     "daily_notes": [],
     "next_daily_note_id": 1
 }
